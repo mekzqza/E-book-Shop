@@ -1,0 +1,31 @@
+{
+  "name": "ebook-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "prisma generate && tsc",
+    "start": "node --env-file-if-exists=.env dist/index.js",
+    "seed": "node --env-file-if-exists=.env dist/seed.js",
+    "dev": "tsx watch --env-file-if-exists=.env src/index.ts",
+    "test": "node --env-file-if-exists=.env node_modules/vitest/vitest.mjs run"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "nodemailer": "^10.0.10",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.13.4",
+    "@types/nodemailer": "^8.0.1",
+    "@types/supertest": "^7.2.1",
+    "prisma": "^7.10.0",
+    "supertest": "^7.2.2",
+    "tsx": "^4.23.13",
+    "typescript": "5.9",
+    "vitest": "^5.0.1"
+  }
+}
