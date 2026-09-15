@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 296">
+  <defs><linearGradient id="g" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#4a93b8"/><stop offset="1" stop-color="#1d4a60"/></linearGradient></defs>
+  <rect width="220" height="296" fill="url(#g)"/>
+  <rect width="12" height="296" fill="#000" opacity=".18"/>
+  <circle cx="158" cy="78" r="40" fill="#fff" opacity=".16"/>
+  <circle cx="158" cy="78" r="22" fill="#fff" opacity=".2"/>
+  <g fill="#fff" font-family="'Noto Sans Thai','Leelawadee UI',Tahoma,sans-serif" font-weight="700" font-size="24">
+    <text x="28" y="206">ศิลปะแห่ง</text>
+    <text x="28" y="238">การใช้ชีวิตช้าๆ</text>
+  </g>
+  <text x="28" y="272" fill="#fff" opacity=".75" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">E-BOOK</text>
+</svg>

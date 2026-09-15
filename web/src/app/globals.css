@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+/* Wireframe palette: grayscale UI, color only for status, errors and the demo warning */
+@theme inline {
+  --color-page: #f0eee9;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6b6b;
+  --color-faint: #8a877f;
+  --color-line: #dcdad5;
+  --color-dash: #b8b5ae;
+  --color-soft: #fbfaf8;
+  --color-err: #b04a2a;
+  --color-err-bg: #f7e2da;
+  --color-err-ink: #7d2f14;
+  --color-pending-bg: #fbe3b4;
+  --color-pending-line: #d99b22;
+  --color-pending-ink: #7a4e00;
+  --color-paid-bg: #cfeec4;
+  --color-paid-line: #5d9e4c;
+  --color-paid-ink: #2b5c1f;
+  --font-sans: var(--font-thai), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "Courier New", monospace;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}

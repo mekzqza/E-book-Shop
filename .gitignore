@@ -16,3 +16,4 @@ pgdata/
 postgres-data/
 nginx/certs/
 api/src/generated/
+*.tsbuildinfo

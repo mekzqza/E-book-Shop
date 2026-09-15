@@ -40,6 +40,21 @@ export function createApp() {
     next();
   });
 
+  // Local dev only (web :3000 -> api :4000 without nginx). Unset in docker, where nginx owns CORS.
+  const devOrigin = process.env.CORS_ORIGIN;
+  if (devOrigin) {
+    app.use((req, res, next) => {
+      if (req.headers.origin === devOrigin) {
+        res.set({ 'Access-Control-Allow-Origin': devOrigin, 'Access-Control-Allow-Headers': 'Content-Type', Vary: 'Origin' });
+      }
+      if (req.method === 'OPTIONS') {
+        res.sendStatus(204);
+        return;
+      }
+      next();
+    });
+  }
+
   app.get('/api/health', async (_req, res) => {
     await prisma.$queryRaw`SELECT 1`;
     res.json({ ok: true });

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 296">
+  <defs><linearGradient id="g" x1="0" y1="0" x2=".6" y2="1"><stop offset="0" stop-color="#d27a3a"/><stop offset="1" stop-color="#6b3413"/></linearGradient></defs>
+  <rect width="220" height="296" fill="url(#g)"/>
+  <rect width="12" height="296" fill="#000" opacity=".18"/>
+  <rect x="120" y="44" width="72" height="58" rx="10" fill="#fff" opacity=".16"/>
+  <rect x="112" y="36" width="88" height="12" rx="6" fill="#fff" opacity=".22"/>
+  <g fill="#fff" font-family="'Noto Sans Thai','Leelawadee UI',Tahoma,sans-serif" font-weight="700" font-size="24">
+    <text x="28" y="206">ทำอาหารง่ายๆ</text>
+    <text x="28" y="238">ในหอพัก</text>
+  </g>
+  <text x="28" y="272" fill="#fff" opacity=".75" font-family="Arial,sans-serif" font-size="12" letter-spacing="2">E-BOOK</text>
+</svg>
