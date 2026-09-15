@@ -1,0 +1,5 @@
+# LF everywhere so Docker builds and Prisma migration checksums match across Windows/Linux
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.ico binary

@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+}
+
+model Book {
+  id          String  @id @default(cuid())
+  title       String
+  description String
+  priceTHB    Int
+  coverUrl    String
+  fileKey     String // file name inside files/, never taken from user input
+  orders      Order[]
+}
+
+model Order {
+  id          String      @id @default(cuid()) // unguessable, used by /orders/:id/mock-pay
+  orderNumber String      @unique // EB-2026-0042, from order_number_seq
+  bookId      String
+  book        Book        @relation(fields: [bookId], references: [id])
+  buyerName   String
+  buyerEmail  String // stored lowercased
+  status      OrderStatus @default(PENDING)
+  createdAt   DateTime    @default(now())
+  paidAt      DateTime?
+  download    Download?
+
+  @@index([orderNumber, buyerEmail])
+}
+
+model Download {
+  id        String    @id @default(cuid())
+  orderId   String    @unique // one token per order, enforced by the DB
+  order     Order     @relation(fields: [orderId], references: [id])
+  token     String    @unique // randomBytes(32) base64url
+  expiresAt DateTime
+  usedAt    DateTime?
+}
