@@ -19,6 +19,7 @@ model Book {
   priceTHB    Int
   coverUrl    String
   fileKey     String // file name inside files/, never taken from user input
+  listed      Boolean @default(true) // false once removed from files/books.json
   orders      Order[]
 }
 

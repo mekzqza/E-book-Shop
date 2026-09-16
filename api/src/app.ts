@@ -61,11 +61,11 @@ export function createApp() {
   });
 
   app.get('/api/books', async (_req, res) => {
-    res.json(await prisma.book.findMany({ select: bookFields, orderBy: { id: 'asc' } }));
+    res.json(await prisma.book.findMany({ where: { listed: true }, select: bookFields, orderBy: { id: 'asc' } }));
   });
 
   app.get('/api/books/:id', async (req, res) => {
-    const book = await prisma.book.findUnique({ where: { id: req.params.id }, select: bookFields });
+    const book = await prisma.book.findUnique({ where: { id: req.params.id, listed: true }, select: bookFields });
     if (!book) {
       res.status(404).json({ error: 'NOT_FOUND' });
       return;
@@ -75,7 +75,7 @@ export function createApp() {
 
   app.post('/api/orders', async (req, res) => {
     const body = createOrderBody.parse(req.body);
-    const book = await prisma.book.findUnique({ where: { id: body.bookId }, select: { id: true } });
+    const book = await prisma.book.findUnique({ where: { id: body.bookId, listed: true }, select: { id: true } });
     if (!book) {
       res.status(404).json({ error: 'BOOK_NOT_FOUND' });
       return;
@@ -158,6 +158,9 @@ export function createApp() {
     const { book } = dl.order;
     res.download(path.join(FILES_DIR, path.basename(book.fileKey)), `${book.title}${path.extname(book.fileKey)}`);
   });
+
+  // Only files/covers/ is public; the PDFs one level up stay behind download tokens.
+  app.use('/api/covers', express.static(path.join(FILES_DIR, 'covers')));
 
   app.use((_req, res) => {
     res.status(404).json({ error: 'NOT_FOUND' });
