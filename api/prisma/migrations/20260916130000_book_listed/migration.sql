@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Book" ADD COLUMN "listed" BOOLEAN NOT NULL DEFAULT true;

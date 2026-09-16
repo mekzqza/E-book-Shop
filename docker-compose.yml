@@ -19,12 +19,15 @@ services:
     restart: unless-stopped
 
   migrate:
-    # one-shot: apply migrations + seed the 3 books (idempotent), then exit
+    # one-shot: apply migrations + sync books from api/files/books.json (idempotent), then exit
     build:
       context: ./api
       target: migrate
     environment:
       DATABASE_URL: *database_url
+      PUBLIC_API_URL: ${PUBLIC_API_URL:-https://localhost} # cover URLs
+    volumes:
+      - ./api/files:/app/files:ro
     depends_on:
       postgres:
         condition: service_healthy
@@ -40,6 +43,8 @@ services:
       SMTP_USER: ${SMTP_USER:-}
       SMTP_PASS: ${SMTP_PASS:-}
       SMTP_FROM: ${SMTP_FROM:-E-book Shop <no-reply@example.com>}
+    volumes:
+      - ./api/files:/app/files:ro # new PDFs and covers need no rebuild
     depends_on:
       migrate:
         condition: service_completed_successfully

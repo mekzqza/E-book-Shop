@@ -44,8 +44,8 @@ export function StatusBadge({ status }: { status: OrderStatus }) {
 
 export function Cover({ book, className = '' }: { book: Pick<Book, 'title' | 'coverUrl'>; className?: string }) {
   return (
-    // plain <img>: covers are small static SVGs, nothing for next/image to optimize
-    <img src={book.coverUrl} alt={`ปก ${book.title}`} width={220} height={296} className={`aspect-[110/148] h-auto shrink-0 rounded-[4px] ${className}`} />
+    // plain <img>: covers are served by the API (files/covers/); object-cover crops any ratio instead of stretching
+    <img src={book.coverUrl} alt={`ปก ${book.title}`} width={220} height={296} className={`aspect-[110/148] h-auto shrink-0 rounded-[4px] object-cover ${className}`} />
   );
 }
 

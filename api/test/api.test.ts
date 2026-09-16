@@ -13,7 +13,7 @@ const createOrder = async (app: App) =>
 const lookup = (app: App, body: object) => request(app).post('/api/orders/lookup').send(body);
 
 beforeAll(async () => {
-  const book = { id: BOOK_ID, title: 'Test book', description: 'test', priceTHB: 99, coverUrl: '/covers/book-1.svg', fileKey: 'book-1.pdf' };
+  const book = { id: BOOK_ID, title: 'Test book', description: 'test', priceTHB: 99, coverUrl: '/api/covers/book-1.svg', fileKey: 'book-1.pdf', listed: true };
   await prisma.book.upsert({ where: { id: BOOK_ID }, create: book, update: book });
 });
 
@@ -66,6 +66,28 @@ describe('POST /api/orders', () => {
       .post('/api/orders')
       .send({ bookId: BOOK_ID, buyerName: 'x', buyerEmail: EMAIL, status: 'PAID' });
     expect(res.status).toBe(400);
+  });
+});
+
+describe('catalog', () => {
+  it('hides unlisted books and refuses new orders for them', async () => {
+    const app = createApp();
+    await prisma.book.update({ where: { id: BOOK_ID }, data: { listed: false } });
+    try {
+      const list = await request(app).get('/api/books').expect(200);
+      expect(list.body.map((b: { id: string }) => b.id)).not.toContain(BOOK_ID);
+      await request(app).get(`/api/books/${BOOK_ID}`).expect(404);
+      await request(app).post('/api/orders').send({ bookId: BOOK_ID, buyerName: 'x', buyerEmail: EMAIL }).expect(404);
+    } finally {
+      await prisma.book.update({ where: { id: BOOK_ID }, data: { listed: true } });
+    }
+  });
+
+  it('serves covers but never the PDFs next to them', async () => {
+    const app = createApp();
+    await request(app).get('/api/covers/book-1.svg').expect(200);
+    await request(app).get('/api/covers/book-1.pdf').expect(404);
+    await request(app).get('/api/covers/%2e%2e%2fbook-1.pdf').expect(404);
   });
 });
 
