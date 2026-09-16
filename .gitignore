@@ -17,3 +17,6 @@ postgres-data/
 nginx/certs/
 api/src/generated/
 *.tsbuildinfo
+
+# paid books: this repo is public, PDFs go to the server only (book-1..3 demo PDFs stay tracked)
+api/files/*.pdf
