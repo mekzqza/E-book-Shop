@@ -1,6 +1,6 @@
 'use client';
 
-import { type FormEvent, useEffect, useState } from 'react';
+import { type FormEvent, type MouseEvent, useEffect, useState } from 'react';
 import { BottomBar, Field, Row, Rows, SHOP, StatusBadge, TopBar, btn, card, input, thaiDateTime } from '@/components/ui';
 import { ApiError, type TrackedOrder, lookupOrder } from '@/lib/api';
 import { drop, load } from '@/lib/session';
@@ -9,6 +9,14 @@ type Query = { orderNumber: string; email: string };
 type View = 'init' | 'search' | 'notFound' | 'failed' | 'limited' | { result: TrackedOrder };
 
 const empty: Query = { orderNumber: '', email: '' };
+
+// App Inventor's WebViewer can't save files: hand the link to the app (WebViewStringChange), which opens it in the browser.
+function openOutsideAppInventor(e: MouseEvent<HTMLAnchorElement>) {
+  const appInventor = (window as { AppInventor?: { setWebViewString(value: string): void } }).AppInventor;
+  if (!appInventor) return;
+  e.preventDefault();
+  appInventor.setWebViewString(e.currentTarget.href);
+}
 
 // 06 ORDER TRACKING: A search · B result · C not found
 export default function TrackPage() {
@@ -143,7 +151,7 @@ function Result({ order, onNewSearch }: { order: TrackedOrder; onNewSearch: () =
           </Rows>
           <div className="flex flex-col gap-2 border-t border-dashed border-line pt-3">
             {order.download ? (
-              <a href={order.download.url} className={btn.primary}>ดาวน์โหลด</a>
+              <a href={order.download.url} className={btn.primary} onClick={openOutsideAppInventor}>ดาวน์โหลด</a>
             ) : (
               <button type="button" disabled className={btn.primary}>
                 ดาวน์โหลด <span className="font-mono text-[10px]">DISABLED</span>

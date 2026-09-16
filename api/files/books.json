@@ -22,5 +22,29 @@
     "priceTHB": 159,
     "file": "book-3.pdf",
     "cover": "book-3.svg"
+  },
+  {
+    "id": "mp3-player",
+    "title": "MP3 Player",
+    "description": "ออกแบบโปรแกรมเล่นเพลง MP3 บนเดสก์ท็อปด้วย Python + Qt เริ่มจากเกณฑ์ยอมรับ 8 ข้อ เช่น เพิ่มเพลงทีละหลายไฟล์ ดับเบิลคลิกเพื่อเล่น หยุดแล้วเล่นต่อจากตำแหน่งเดิม แถบความคืบหน้า ปรับเสียง 0–100% และรับมือไฟล์ที่ถูกลบโดยแอปไม่ crash พร้อม UI wireframe จาก Figma และแผนการทำงานร่วมกับ Claude Code",
+    "priceTHB": 99,
+    "file": "mp3-player.pdf",
+    "cover": "mp3-player.jpg"
+  },
+  {
+    "id": "task-manager-sqlite",
+    "title": "Personal Task Manager + SQLite",
+    "description": "คู่มือสร้างแอปจัดการงานบนเดสก์ท็อปด้วย PyQt6 + SQLite มีระบบ login ระดับความสำคัญ หมวดหมู่ ค้นหาและกรองงาน Dashboard สรุปงานเสร็จ งานค้าง และงานใกล้ครบกำหนด ถังขยะพร้อมกู้คืน และ Import/Export CSV พร้อมตรวจข้อมูลผิดรูปแบบ มี wireframe ทุกหน้า ขั้นตอนพัฒนาด้วย Claude Code และภาพผลลัพธ์จริง",
+    "priceTHB": 99,
+    "file": "task-manager-sqlite.pdf",
+    "cover": "task-manager-sqlite.jpg"
+  },
+  {
+    "id": "tarot-card",
+    "title": "Tarot Card",
+    "description": "แอปดูดวงไพ่ทาโรต์ 3 ใบ อดีต ปัจจุบัน และอนาคต สุ่มไพ่ไม่ซ้ำกันพร้อมคำอธิบายความหมาย มีเครื่องเล่นเพลงประกอบที่เล่น หยุดชั่วคราว หยุด และปรับเสียงได้ แอปไม่ crash เมื่อเปิดภาพหรือเพลงไม่ได้ เล่าตั้งแต่ requirement และ wireframe ไปจนถึงการนำโค้ดจาก Media Player มาต่อยอด พร้อมภาพผลลัพธ์ก่อนและหลังตกแต่ง",
+    "priceTHB": 99,
+    "file": "tarot-card.pdf",
+    "cover": "tarot-card.jpg"
   }
 ]
